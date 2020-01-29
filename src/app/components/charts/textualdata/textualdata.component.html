@@ -1,0 +1,40 @@
+<div>
+    <div>
+        <h4 class="text-center">Text/Bar Chart</h4>
+        <canvas baseChart *ngFor="let user of textArr" 
+        [datasets]="[
+        { data: [num1, num2, num3, num4, num5, num6, num7], label: user.firstname },
+        { data: [num6, num3, num5, num1, num2, num7, num4], label: user.lastname },
+        { data: [num3, num4, num1, num7, num5, num2, num6], label: user.email }
+        ]"
+        [labels]="[user.city, user.country, user.streetname, user.streetnum]"
+        [options]="barChartOptions"
+        [plugins]="barChartPlugins"
+        [legend]="barChartLegend"
+        [chartType]="barChartType">
+      </canvas>
+      </div>
+      <div *ngFor="let user of textArr" class="form-group mt-4">
+        <h5>User Details:</h5>
+        <div class="form-group mt-3">
+            <i class="fas fa-user"></i>
+            <p> 
+            First Name: {{user.firstname}}<br/>Last Name: {{user.lastname}}
+            </p>
+            <i class="fas fa-envelope"></i>
+            <p>Email Address: <a href="mailto:`${{user.email}}`">{{user.email}}</a></p>
+            <i class="fas fa-map-marker-alt"></i>
+            <p>Location: 
+                <br/>
+                Country: {{user.country}}
+                <br/>
+                City: {{user.city}}
+                <br/>
+                Street Address: {{user.streetname}}
+                <br/>
+                Street Number: {{user.streetnum}}
+            </p>
+        </div>
+    </div>
+    <button class="btn btn-outline-success btn-sm" [hidden]="btnHide" (click)="exportToCSV()">Export To CSV</button>
+</div>
